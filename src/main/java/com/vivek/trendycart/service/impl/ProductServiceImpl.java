@@ -2,6 +2,7 @@ package com.vivek.trendycart.service.impl;
 
 import com.vivek.trendycart.dto.ProductDTO;
 import com.vivek.trendycart.entity.Product;
+import com.vivek.trendycart.exception.ResourceNotFoundException;
 import com.vivek.trendycart.repository.ProductRepository;
 import com.vivek.trendycart.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
     // GET ALL PRODUCTS
     @Override
     public List<Product> getAllProducts() {
+
         return productRepository.findAll();
     }
 
@@ -40,31 +42,40 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(Long id) {
 
-        return productRepository.findById(id).orElse(null);
+        return productRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Product not found with id: " + id
+                        ));
     }
 
     // UPDATE PRODUCT
     @Override
     public Product updateProduct(Long id, Product updatedProduct) {
 
-        Product product = productRepository.findById(id).orElse(null);
+        Product product = productRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Product not found with id: " + id
+                        ));
 
-        if (product != null) {
+        product.setName(updatedProduct.getName());
+        product.setPrice(updatedProduct.getPrice());
 
-            product.setName(updatedProduct.getName());
-            product.setPrice(updatedProduct.getPrice());
-
-            return productRepository.save(product);
-        }
-
-        return null;
+        return productRepository.save(product);
     }
 
     // DELETE PRODUCT
     @Override
     public String deleteProduct(Long id) {
 
-        productRepository.deleteById(id);
+        Product product = productRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Product not found with id: " + id
+                        ));
+
+        productRepository.delete(product);
 
         return "Product deleted successfully";
     }

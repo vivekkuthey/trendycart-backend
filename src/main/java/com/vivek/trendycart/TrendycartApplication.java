@@ -9,6 +9,5 @@ public class TrendycartApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TrendycartApplication.class, args);
 	}
-
-
 }
+
