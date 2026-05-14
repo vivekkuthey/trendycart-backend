@@ -1,13 +1,10 @@
 package com.vivek.trendycart.controller;
 
-import com.vivek.trendycart.util.ApiResponse;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import com.vivek.trendycart.dto.ProductDTO;
-import jakarta.validation.Valid;
 import com.vivek.trendycart.entity.Product;
 import com.vivek.trendycart.service.ProductService;
-import org.springframework.http.ResponseEntity;
+import com.vivek.trendycart.util.ApiResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,59 +22,73 @@ public class ProductController {
 
     // CREATE PRODUCT
     @PostMapping
-    public ResponseEntity<ApiResponse<Product>> saveProduct(
+    public ApiResponse<Product> saveProduct(
             @Valid @RequestBody ProductDTO productDTO) {
 
-        Product product = productService.saveProduct(productDTO);
-
-        ApiResponse<Product> response =
-                new ApiResponse<>(
-                        true,
-                        "Product created successfully",
-                        product
-                );
-
-        return new ResponseEntity<>(
-                response,
-                HttpStatus.CREATED
+        return new ApiResponse<>(
+                true,
+                "Product created successfully",
+                productService.saveProduct(productDTO)
         );
     }
 
     // GET ALL PRODUCTS
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
+    public ApiResponse<List<Product>> getAllProducts() {
 
-        List<Product> products = productService.getAllProducts();
+        return new ApiResponse<>(
+                true,
+                "Products fetched successfully",
+                productService.getAllProducts()
+        );
+    }
 
-        return ResponseEntity.ok(products);
+    // SEARCH PRODUCT
+    @GetMapping("/search")
+    public ApiResponse<List<Product>> searchProducts(
+            @RequestParam String name) {
+
+        return new ApiResponse<>(
+                true,
+                "Products fetched successfully",
+                productService.searchProducts(name)
+        );
     }
 
     // GET PRODUCT BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+    public ApiResponse<Product> getProductById(
+            @PathVariable Long id) {
 
-        Product product = productService.getProductById(id);
-
-        return ResponseEntity.ok(product);
+        return new ApiResponse<>(
+                true,
+                "Product fetched successfully",
+                productService.getProductById(id)
+        );
     }
 
     // UPDATE PRODUCT
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(
+    public ApiResponse<Product> updateProduct(
             @PathVariable Long id,
             @RequestBody Product updatedProduct) {
 
-        Product product = productService.updateProduct(id, updatedProduct);
-
-        return ResponseEntity.ok(product);
+        return new ApiResponse<>(
+                true,
+                "Product updated successfully",
+                productService.updateProduct(id, updatedProduct)
+        );
     }
 
     // DELETE PRODUCT
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+    public ApiResponse<String> deleteProduct(
+            @PathVariable Long id) {
 
-        productService.deleteProduct(id);
-
-        return ResponseEntity.ok("Product deleted successfully");
+        return new ApiResponse<>(
+                true,
+                "Product deleted successfully",
+                productService.deleteProduct(id)
+        );
     }
 }

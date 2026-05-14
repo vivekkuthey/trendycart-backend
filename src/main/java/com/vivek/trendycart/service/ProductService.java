@@ -13,7 +13,11 @@ public interface ProductService {
 
     Product getProductById(Long id);
 
-    Product updateProduct(Long id, Product updatedProduct);
+    Product updateProduct(Long id,
+                          Product updatedProduct);
 
     String deleteProduct(Long id);
+
+    List<Product> searchProducts(String name);
+
 }

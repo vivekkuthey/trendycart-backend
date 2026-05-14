@@ -14,12 +14,10 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    // Constructor Injection
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    // CREATE PRODUCT
     @Override
     public Product saveProduct(ProductDTO productDTO) {
 
@@ -44,13 +42,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
-    // GET ALL PRODUCTS
     @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    // GET PRODUCT BY ID
     @Override
     public Product getProductById(Long id) {
 
@@ -61,9 +57,9 @@ public class ProductServiceImpl implements ProductService {
                         ));
     }
 
-    // UPDATE PRODUCT
     @Override
-    public Product updateProduct(Long id, Product updatedProduct) {
+    public Product updateProduct(Long id,
+                                 Product updatedProduct) {
 
         Product product = productRepository.findById(id)
                 .orElseThrow(() ->
@@ -90,7 +86,6 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
-    // DELETE PRODUCT
     @Override
     public String deleteProduct(Long id) {
 
@@ -103,5 +98,12 @@ public class ProductServiceImpl implements ProductService {
         productRepository.delete(product);
 
         return "Product deleted successfully";
+    }
+
+    @Override
+    public List<Product> searchProducts(String name) {
+
+        return productRepository
+                .findByNameContainingIgnoreCase(name);
     }
 }
