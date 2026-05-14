@@ -1,6 +1,7 @@
 package com.vivek.trendycart.controller;
 
 import com.vivek.trendycart.dto.ProductDTO;
+import jakarta.validation.Valid;
 import com.vivek.trendycart.entity.Product;
 import com.vivek.trendycart.service.ProductService;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +22,8 @@ public class ProductController {
 
     // CREATE PRODUCT
     @PostMapping
-    public ResponseEntity<Product> saveProduct(@RequestBody ProductDTO productDTO) {
-
-        Product savedProduct = productService.saveProduct(productDTO);
-
-        return ResponseEntity.ok(savedProduct);
+    public Product saveProduct(@Valid @RequestBody ProductDTO productDTO) {
+        return productService.saveProduct(productDTO);
     }
 
     // GET ALL PRODUCTS
