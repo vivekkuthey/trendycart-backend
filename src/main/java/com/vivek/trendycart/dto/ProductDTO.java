@@ -5,25 +5,64 @@ import jakarta.validation.constraints.Positive;
 
 public class ProductDTO {
 
-    @NotBlank(message = "Product name is required")
+    @NotBlank(message="Product name is required")
     private String name;
 
-    @Positive(message = "Price must be greater than 0")
+    @NotBlank(message="Brand is required")
+    private String brand;
+
+    @NotBlank(message="Category is required")
+    private String category;
+
+    @Positive(message="Price must be greater than 0")
     private double price;
 
-    public String getName() {
-        return name;
-    }
+    @Positive(message="Stock must be greater than 0")
+    private Integer stock;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String description;
 
-    public double getPrice() {
-        return price;
-    }
+    private String imageUrl;
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+    private String storage;
+
+    private String ram;
+
+    private String processor;
+
+    private String warranty;
+
+
+    public String getName() { return name; }
+    public void setName(String name){ this.name=name; }
+
+    public String getBrand(){ return brand; }
+    public void setBrand(String brand){ this.brand=brand; }
+
+    public String getCategory(){ return category; }
+    public void setCategory(String category){ this.category=category; }
+
+    public double getPrice(){ return price; }
+    public void setPrice(double price){ this.price=price; }
+
+    public Integer getStock(){ return stock; }
+    public void setStock(Integer stock){ this.stock=stock; }
+
+    public String getDescription(){ return description; }
+    public void setDescription(String description){ this.description=description; }
+
+    public String getImageUrl(){ return imageUrl; }
+    public void setImageUrl(String imageUrl){ this.imageUrl=imageUrl; }
+
+    public String getStorage(){ return storage; }
+    public void setStorage(String storage){ this.storage=storage; }
+
+    public String getRam(){ return ram; }
+    public void setRam(String ram){ this.ram=ram; }
+
+    public String getProcessor(){ return processor; }
+    public void setProcessor(String processor){ this.processor=processor; }
+
+    public String getWarranty(){ return warranty; }
+    public void setWarranty(String warranty){ this.warranty=warranty; }
 }

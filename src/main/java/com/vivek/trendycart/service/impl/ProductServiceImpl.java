@@ -26,7 +26,20 @@ public class ProductServiceImpl implements ProductService {
         Product product = new Product();
 
         product.setName(productDTO.getName());
+        product.setBrand(productDTO.getBrand());
+        product.setCategory(productDTO.getCategory());
+
         product.setPrice(productDTO.getPrice());
+        product.setStock(productDTO.getStock());
+
+        product.setDescription(productDTO.getDescription());
+        product.setImageUrl(productDTO.getImageUrl());
+
+        product.setStorage(productDTO.getStorage());
+        product.setRam(productDTO.getRam());
+        product.setProcessor(productDTO.getProcessor());
+
+        product.setWarranty(productDTO.getWarranty());
 
         return productRepository.save(product);
     }
@@ -34,7 +47,6 @@ public class ProductServiceImpl implements ProductService {
     // GET ALL PRODUCTS
     @Override
     public List<Product> getAllProducts() {
-
         return productRepository.findAll();
     }
 
@@ -60,7 +72,20 @@ public class ProductServiceImpl implements ProductService {
                         ));
 
         product.setName(updatedProduct.getName());
+        product.setBrand(updatedProduct.getBrand());
+        product.setCategory(updatedProduct.getCategory());
+
         product.setPrice(updatedProduct.getPrice());
+        product.setStock(updatedProduct.getStock());
+
+        product.setDescription(updatedProduct.getDescription());
+        product.setImageUrl(updatedProduct.getImageUrl());
+
+        product.setStorage(updatedProduct.getStorage());
+        product.setRam(updatedProduct.getRam());
+        product.setProcessor(updatedProduct.getProcessor());
+
+        product.setWarranty(updatedProduct.getWarranty());
 
         return productRepository.save(product);
     }
