@@ -104,6 +104,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> searchProducts(String name) {
 
         return productRepository
-                .findByNameContainingIgnoreCase(name);
+                .findByNameContainingIgnoreCaseOrBrandContainingIgnoreCase(
+                        name,
+                        name
+                );
     }
 }

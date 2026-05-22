@@ -13,13 +13,13 @@ public class Product {
 
     private String brand;
 
+    // Keep String for now
     private String category;
 
     private double price;
 
     private Integer stock;
 
-    @Column(length = 1000)
     private String description;
 
     private String imageUrl;
@@ -32,10 +32,15 @@ public class Product {
 
     private String warranty;
 
-    // Getters and Setters
+
+    // GETTERS AND SETTERS
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id=id;
     }
 
     public String getName() {
@@ -43,7 +48,7 @@ public class Product {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name=name;
     }
 
     public String getBrand() {
@@ -51,7 +56,7 @@ public class Product {
     }
 
     public void setBrand(String brand) {
-        this.brand = brand;
+        this.brand=brand;
     }
 
     public String getCategory() {
@@ -59,7 +64,7 @@ public class Product {
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.category=category;
     }
 
     public double getPrice() {
@@ -67,7 +72,7 @@ public class Product {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price=price;
     }
 
     public Integer getStock() {
@@ -75,7 +80,7 @@ public class Product {
     }
 
     public void setStock(Integer stock) {
-        this.stock = stock;
+        this.stock=stock;
     }
 
     public String getDescription() {
@@ -83,7 +88,7 @@ public class Product {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description=description;
     }
 
     public String getImageUrl() {
@@ -91,7 +96,7 @@ public class Product {
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+        this.imageUrl=imageUrl;
     }
 
     public String getStorage() {
@@ -99,7 +104,7 @@ public class Product {
     }
 
     public void setStorage(String storage) {
-        this.storage = storage;
+        this.storage=storage;
     }
 
     public String getRam() {
@@ -107,7 +112,7 @@ public class Product {
     }
 
     public void setRam(String ram) {
-        this.ram = ram;
+        this.ram=ram;
     }
 
     public String getProcessor() {
@@ -115,7 +120,7 @@ public class Product {
     }
 
     public void setProcessor(String processor) {
-        this.processor = processor;
+        this.processor=processor;
     }
 
     public String getWarranty() {
@@ -123,6 +128,6 @@ public class Product {
     }
 
     public void setWarranty(String warranty) {
-        this.warranty = warranty;
+        this.warranty=warranty;
     }
 }
